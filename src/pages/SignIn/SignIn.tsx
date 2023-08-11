@@ -1,32 +1,31 @@
-import { useTranslation } from "react-i18next";
 import {FormEvent, useState} from "react";
-import { Link } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import { useTranslation } from "react-i18next";
+import {Link, useNavigate} from "react-router-dom";
 
-import {signIn} from "@shared/redux/saga/API";
+import {logUser} from "@shared/redux/action-creators.ts";
 
 const SignIn = () => {
 
-    const { t } = useTranslation();
+    const {t} = useTranslation();
+    const dispatch = useDispatch()
+    const nav = useNavigate()
+
     const [checked, setChecked] = useState(false)
     const [DTO, setDTO] = useState({
         email: '',
         password: '',
     });
 
-    const sendData = async (e:FormEvent<HTMLFormElement>) => {
+    const login = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        try {
-            const {data} = await signIn(DTO);
-            console.log(data);
-        } catch (e: unknown) {
-            console.error(e)
-        }
+        dispatch(logUser(DTO, nav))
     };
 
     return (
         <div className="container h-100 d-flex align-items-center">
             <div className="text-center mx-auto" style={{ maxWidth: '330px' }}>
-                <form onSubmit={event => sendData(event)}>
+                <form onSubmit={login}>
                     <input type="hidden" name="action" value="sign-in" />
                     <h3 className="mb-4">{t('sign.in.title')}</h3>
                     <div className="form-floating">
@@ -56,7 +55,6 @@ const SignIn = () => {
                         />
                         <label htmlFor="password">{t('password')}</label>
                     </div>
-
                     <div className="checkbox text-start mx-3 my-1">
                         <input
                             className="form-check-input"
@@ -68,11 +66,9 @@ const SignIn = () => {
                             {t('show.pass')}
                         </label>
                     </div>
-
                     <button className="w-100 btn btn-lg btn-primary my-4" type="submit">
                         {t('sign.in')}
                     </button>
-
                     <p className="mt-1">
                         {t('forgot.password')}
                         &nbsp;
@@ -80,7 +76,6 @@ const SignIn = () => {
                             {t('reset.password')}
                         </Link>
                     </p>
-
                     <p className="mt-1">
                         {t('no.account')}
                         &nbsp;

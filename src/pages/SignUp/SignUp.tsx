@@ -96,9 +96,6 @@ const SignUp = () => {
                     <div className="g-recaptcha" data-sitekey="6Lf3IcAkAAAAAM0wQKit8-gYW0PkTywoLQ6cTfw_"></div>
                     <button className="w-100 btn btn-lg btn-primary mb-4 mt-4" type="submit">{t('sign.up')}</button>
                 </form>
-
-                {/*<tags:contains error="${requestScope.error}" value="captcha"/><br>*/}
-
                 <p className="m-0 mb-3">
                     {t('have.account')}
                     &nbsp;
