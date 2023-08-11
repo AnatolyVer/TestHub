@@ -9,6 +9,7 @@ import SignUp from '@pages/SignUp/SignUp';
 
 import classes from './App.module.scss'
 import AboutUs from "@pages/AboutUs/AboutUs.tsx";
+import Contacts from "@pages/Contacts/Contacts.tsx";
 function App() {
 
     useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/sign_up" element={<SignUp/>} />
             <Route path="/sign_in" element={<SignIn/>} />
             <Route path="/about" element={<AboutUs/>} />
+            <Route path="/contacts" element={<Contacts/>} />
           </Routes>
           <Footer/>
         </BrowserRouter>

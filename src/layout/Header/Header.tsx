@@ -54,7 +54,11 @@ const Header = () => {
                     </Link>
                 </li>
 
-                <li><a href="contacts.jsp" className="nav-link px-2 link-dark">{t('contacts')}</a></li>
+                <li>
+                    <Link className="nav-link px-2 link-dark" to='/contacts'>
+                        {t('contacts')}
+                    </Link>
+                </li>
             </ul>
 
             <div className="col-md-4 d-flex justify-content-end">
